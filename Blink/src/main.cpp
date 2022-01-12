@@ -1,11 +1,16 @@
 #include <Arduino.h>
-
+/*
 void OnLed(){
 PORTB = PORTB | (1<<5);
 }
 
 void OffLed(){
 PORTB = PORTB &~(1<<5);
+}
+*/
+
+void toggleLed(){
+  PINB = PINB | (1<<5);
 }
 
 void ledSetup(){
@@ -19,8 +24,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  OnLed();
-  delay(1000);
-  OffLed();
+  toggleLed();
   delay(1000);
 }
