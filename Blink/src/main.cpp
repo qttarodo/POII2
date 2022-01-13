@@ -19,13 +19,22 @@ void ledSetup(){
   DDRB |= LED_MASK;
 }
 
+void timerSetup(){
+  TCCR1A = 0;
+  TCCR1B = (1<< WGM12) | (1<< CS12) | (1<<CS10);
+  OCR1A = 15625;
+  TIMSK1 = (1 << OCIE1A);
+}
+
+ISR(TIMER1_COMPA_vect){
+  toggleLed();
+}
+
 void setup() {
   // put your setup code here, to run once:
   ledSetup();
+  timerSetup();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  toggleLed();
-  delay(1000);
 }
